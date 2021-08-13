@@ -20,3 +20,10 @@ export type LayoutEvent = {
 		layout: Layout,
 	},
 };
+
+export type ICurrency = 'VND' | 'USD' | 'EUR' | 'YEN';
+
+export type IAsset = {
+	currency: ICurrency,
+	value?: number,
+};
