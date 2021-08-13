@@ -1,8 +1,11 @@
-import React from 'react';
-import { StyleSheet, View, Text, TextInput, TouchableOpacity, } from 'react-native';
+import React, { useState, } from 'react';
+import { StyleSheet, View, Text, TouchableOpacity, } from 'react-native';
 
 import LogoIcon from 'svg/logo';
+import EyeIcon from 'svg/eye';
 import DiamondIcon from 'svg/diamond';
+import Input from 'components/Input';
+import Button from 'components/Button';
 import { colors, textColors, } from 'utils/global';
 
 type Props = {
@@ -10,6 +13,14 @@ type Props = {
 };
 
 const LoginRoute = (props: Props) => {
+	const [secure, setSecure] = useState(true);
+
+	const showPasswordButton = <TouchableOpacity
+		style={styles.showPasswordButton}
+		onPress={() => setSecure(!secure)}>
+		<EyeIcon/>
+	</TouchableOpacity>;
+
 	return <View style={styles.container}>
 		<View style={styles.logoContainer}>
 			{particles.map((configs, i) => <DiamondIcon key={i} {...configs}/>)}
@@ -23,15 +34,14 @@ const LoginRoute = (props: Props) => {
 			<Text style={styles.subTitle}>
 				Your Digital Passport
 			</Text>
-			<Text style={styles.fieldCaption}>
-				ENTER PASSWORD
-			</Text>
-			<TextInput
-				secureTextEntry
-				style={styles.input}/>
-			<TouchableOpacity style={styles.buttonContainer}>
-				<Text style={styles.buttonText}>Unlock</Text>
-			</TouchableOpacity>
+			<Input
+				secureTextEntry={secure}
+				caption="ENTER PASSWORD"
+				suffix={showPasswordButton}/>
+			<Button
+				caption="Unlock"
+				style={styles.unlockButton}
+				contentContainerStyle={styles.unlockButtonInner}/>
 		</View>
 	</View>;
 };
@@ -68,33 +78,15 @@ const styles = StyleSheet.create({
 		marginBottom: 32,
 		color: textColors.gray,
 	},
-	fieldCaption: {
-		fontSize: 10,
-		fontWeight: '700',
-		marginLeft: 8,
-		marginBottom: 6,
-		color: textColors.lightGray,
+	showPasswordButton: {
+		paddingRight: 18,
 	},
-	input: {
-		borderWidth: 1,
-		borderColor: '#C5CEE0',
-		borderRadius: 8,
-		height: 40,
-		paddingHorizontal: 16,
-	},
-	buttonContainer: {
+	unlockButton: {
 		alignSelf: 'center',
-		backgroundColor: colors.roninBlue,
-		height: 40,
-		borderRadius: 8,
-		justifyContent: 'center',
-		paddingHorizontal: 20,
-		marginTop: 28,
+		marginTop: 6,
 	},
-	buttonText: {
-		color: '#FFFFFF',
-		fontWeight: '600',
-		lineHeight: 20,
+	unlockButtonInner: {
+		paddingHorizontal: 24,
 	},
 });
 
