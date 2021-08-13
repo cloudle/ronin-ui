@@ -2,7 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableOpacity, } from 'react-native';
 
 import LogoIcon from 'svg/logo';
-import DiamondParticle from 'svg/diamond';
+import DiamondIcon from 'svg/diamond';
 import { colors, textColors, } from 'utils/global';
 
 type Props = {
@@ -12,6 +12,7 @@ type Props = {
 const LoginRoute = (props: Props) => {
 	return <View style={styles.container}>
 		<View style={styles.logoContainer}>
+			{particles.map((configs, i) => <DiamondIcon key={i} {...configs}/>)}
 			<LogoIcon
 				color={colors.roninBlue}/>
 			<Text style={styles.title}>
@@ -96,3 +97,37 @@ const styles = StyleSheet.create({
 		lineHeight: 20,
 	},
 });
+
+const particles = [{
+	size: 12,
+	color: '#EC9FFF',
+	style: { position: 'absolute', bottom: 60, right: 70, },
+}, {
+	size: 12,
+	color: '#E9F5FE',
+	style: { position: 'absolute', bottom: 90, left: 70, },
+}, {
+	size: 6,
+	color: '#FFC729',
+	style: { position: 'absolute', bottom: 150, left: 90, },
+}, {
+	size: 12,
+	color: '#E9F5FE',
+	style: { position: 'absolute', bottom: 200, left: 30, },
+}, {
+	size: 12,
+	color: '#E9F5FE',
+	style: { position: 'absolute', bottom: 240, left: 94, },
+}, {
+	size: 12,
+	color: '#FFC729',
+	style: { position: 'absolute', bottom: 242, right: 92, },
+}, {
+	size: 6,
+	color: '#EC9FFF',
+	style: { position: 'absolute', bottom: 210, right: 56, },
+}, {
+	size: 12,
+	color: '#E9F5FE',
+	style: { position: 'absolute', bottom: 110, right: 20, },
+}, ];

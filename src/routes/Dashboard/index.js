@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView, TouchableOpacity, Text, } from 'react-native';
 
+import DiamondIcon from 'svg/diamond';
 import IconButton from 'components/IconButton';
 import { colors, textColors, sizes, } from 'utils/global';
 import Wallet from './Wallet';
@@ -12,45 +13,48 @@ type Props = {
 
 const DashboardRoute = (props: Props) => {
 	return <View style={styles.container}>
-		<View style={styles.headerContainer}>
-			<View style={styles.appNameContainer}>
-				<View style={styles.appNameDot}/>
-				<Text style={styles.appNameTitle}>Ronin Wallet</Text>
+		{particles.map((configs, i) => <DiamondIcon key={i} {...configs}/>)}
+		<View style={styles.contentContainer}>
+			<View style={styles.headerContainer}>
+				<View style={styles.appNameContainer}>
+					<View style={styles.appNameDot}/>
+					<Text style={styles.appNameTitle}>Ronin Wallet</Text>
+				</View>
+				<View style={styles.headingCommandContainer}>
+					<IconButton icon="user"/>
+				</View>
 			</View>
-			<View style={styles.headingCommandContainer}>
-				<IconButton icon="user"/>
-			</View>
+			<ScrollView contentContainerStyle={styles.scrollContentContainer}>
+				<Wallet/>
+				<View style={styles.commandContainer}>
+					<IconButton
+						disabled
+						style={styles.button}
+						buttonContainerStyle={styles.buttonInner}
+						icon="send"
+						caption="Deposit"/>
+					<IconButton
+						style={styles.button}
+						buttonContainerStyle={styles.buttonInner}
+						icon="send"
+						caption="Send"/>
+					<IconButton
+						disabled
+						style={styles.button}
+						buttonContainerStyle={styles.buttonInner}
+						icon="send"
+						caption="Swap"/>
+				</View>
+				<Text style={styles.sectionTitle}>
+					Assets
+				</Text>
+				<View style={styles.assetsContainer}>
+					{mockAssets.map((item, i) => <AssetRow
+						key={i}
+						item={item}/>)}
+				</View>
+			</ScrollView>
 		</View>
-		<ScrollView contentContainerStyle={styles.scrollContentContainer}>
-			<Wallet/>
-			<View style={styles.commandContainer}>
-				<IconButton
-					disabled
-					style={styles.button}
-					buttonContainerStyle={styles.buttonInner}
-					icon="send"
-					caption="Deposit"/>
-				<IconButton
-					style={styles.button}
-					buttonContainerStyle={styles.buttonInner}
-					icon="send"
-					caption="Send"/>
-				<IconButton
-					disabled
-					style={styles.button}
-					buttonContainerStyle={styles.buttonInner}
-					icon="send"
-					caption="Swap"/>
-			</View>
-			<Text style={styles.sectionTitle}>
-				Assets
-			</Text>
-			<View style={styles.assetsContainer}>
-				{mockAssets.map((item, i) => <AssetRow
-					key={i}
-					item={item}/>)}
-			</View>
-		</ScrollView>
 	</View>;
 };
 
@@ -61,6 +65,10 @@ const dotSize = 8;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+	},
+	contentContainer: {
+		position: 'absolute',
+		top: 0, left: 0, bottom: 0, right: 0,
 	},
 	headerContainer: {
 		flexDirection: 'row',
@@ -95,7 +103,7 @@ const styles = StyleSheet.create({
 		justifyContent: 'flex-end',
 	},
 	scrollContentContainer: {
-		paddingVertical: 12,
+		paddingVertical: 20,
 		paddingHorizontal: 20,
 	},
 	commandContainer: {
@@ -123,6 +131,32 @@ const styles = StyleSheet.create({
 
 	},
 });
+
+const particles = [{
+	size: 12,
+	color: '#E9F5FE',
+	style: { position: 'absolute', top: 20, right: 120, },
+}, {
+	size: 6,
+	color: '#FFC729',
+	style: { position: 'absolute', top: 45, right: 100, },
+}, {
+	size: 12,
+	color: '#E9F5FE',
+	style: { position: 'absolute', top: 260, left: 16, },
+}, {
+	size: 12,
+	color: '#E9F5FE',
+	style: { position: 'absolute', top: 290, right: 30, },
+}, {
+	size: 6,
+	color: '#FFC729',
+	style: { position: 'absolute', top: 342, left: 60, },
+}, {
+	size: 12,
+	color: '#EC9FFF',
+	style: { position: 'absolute', top: 345, right: 60, },
+}, ];
 
 const mockAssets = [{
 	currency: 'EUR',

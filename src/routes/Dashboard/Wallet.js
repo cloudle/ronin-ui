@@ -39,7 +39,7 @@ const Wallet = (props: Props) => {
 			<View style={styles.brandContainer}>
 				<LogoIcon
 					invert
-					color={colors.roninBlue}
+					color="#1C94F4"
 					width={28}
 					height={40}/>
 			</View>
