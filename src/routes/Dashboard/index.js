@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, ScrollView, TouchableOpacity, Text, } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, } from 'react-native';
+import { useNavigate } from 'react-router';
 
 import DiamondIcon from 'svg/diamond';
 import IconButton from 'components/IconButton';
@@ -12,6 +13,8 @@ type Props = {
 };
 
 const DashboardRoute = (props: Props) => {
+	const navigate = useNavigate();
+
 	return <View style={styles.container}>
 		{particles.map((configs, i) => <DiamondIcon key={i} {...configs}/>)}
 		<View style={styles.contentContainer}>
@@ -37,7 +40,8 @@ const DashboardRoute = (props: Props) => {
 						style={styles.button}
 						buttonContainerStyle={styles.buttonInner}
 						icon="send"
-						caption="Send"/>
+						caption="Send"
+						onPress={() => navigate('/send')}/>
 					<IconButton
 						disabled
 						style={styles.button}

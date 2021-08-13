@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView, TouchableOpacity, Text, } from 'react-native';
+import { useNavigate, } from 'react-router';
 
 import type { Style, } from 'typeDefinitions';
 import TopNavigation from 'components/TopNavigation';
@@ -12,6 +13,8 @@ type Props = {
 };
 
 const SendRoute = (props: Props) => {
+	const navigate = useNavigate();
+
 	const maxAmountButton = <TouchableOpacity style={styles.embedButtonContainer}>
 		<Text style={styles.embedButtonCaption}>MAX</Text>
 	</TouchableOpacity>;
@@ -19,7 +22,7 @@ const SendRoute = (props: Props) => {
 	return <View style={styles.container}>
 		<TopNavigation
 			title="Send Assets"
-			onBack={() => {}}/>
+			onBack={() => navigate('/')}/>
 		<ScrollView contentContainerStyle={styles.scrollContentContainer}>
 			<Input
 				disabled
@@ -36,7 +39,8 @@ const SendRoute = (props: Props) => {
 			<Button
 				disabled
 				style={styles.buttonContainer}
-				caption="Cancel"/>
+				caption="Cancel"
+				onPress={() => navigate('/')}/>
 			<Button
 				style={styles.buttonContainer}
 				caption="Send"/>
