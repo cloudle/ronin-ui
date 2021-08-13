@@ -7,6 +7,7 @@ import EyeIcon from 'svg/eye';
 import DiamondIcon from 'svg/diamond';
 import Input from 'components/Input';
 import Button from 'components/Button';
+import RouteContainer from 'components/RouteContainer';
 import { colors, textColors, } from 'utils/global';
 
 type Props = {
@@ -23,7 +24,7 @@ const LoginRoute = (props: Props) => {
 		<EyeIcon/>
 	</TouchableOpacity>;
 
-	return <View style={styles.container}>
+	return <RouteContainer style={styles.container}>
 		<View style={styles.logoContainer}>
 			{particles.map((configs, i) => <DiamondIcon key={i} {...configs}/>)}
 			<LogoIcon
@@ -46,7 +47,7 @@ const LoginRoute = (props: Props) => {
 				contentContainerStyle={styles.unlockButtonInner}
 				onPress={() => navigate('/')}/>
 		</View>
-	</View>;
+	</RouteContainer>;
 };
 
 export default LoginRoute;

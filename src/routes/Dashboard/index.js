@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router';
 
 import DiamondIcon from 'svg/diamond';
 import IconButton from 'components/IconButton';
+import RouteContainer from 'components/RouteContainer';
 import { colors, textColors, sizes, } from 'utils/global';
 import Wallet from './Wallet';
 import AssetRow from './AssetRow';
@@ -15,7 +16,7 @@ type Props = {
 const DashboardRoute = (props: Props) => {
 	const navigate = useNavigate();
 
-	return <View style={styles.container}>
+	return <RouteContainer style={styles.container}>
 		{particles.map((configs, i) => <DiamondIcon key={i} {...configs}/>)}
 		<View style={styles.contentContainer}>
 			<View style={styles.headerContainer}>
@@ -59,7 +60,7 @@ const DashboardRoute = (props: Props) => {
 				</View>
 			</ScrollView>
 		</View>
-	</View>;
+	</RouteContainer>;
 };
 
 export default DashboardRoute;

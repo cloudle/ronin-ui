@@ -14,6 +14,7 @@ type Props = {
 	size?: number,
 	iconSize?: number,
 	caption?: string,
+	onPress?: Function,
 	disabled?: boolean,
 	children?: Element,
 };
@@ -26,6 +27,7 @@ const IconButton = (props: Props) => {
 		size,
 		iconSize,
 		caption,
+		onPress,
 		disabled,
 		children,
 		...iconProps
@@ -36,7 +38,8 @@ const IconButton = (props: Props) => {
 	return <View style={style}>
 		<TouchableOpacity
 			disabled={disabled}
-			style={[styles.container, buttonContainerStyle, disabledStyle]}>
+			style={[styles.container, buttonContainerStyle, disabledStyle]}
+			onPress={onPress}>
 			{children || <IconComponent size={iconSize} color={colors.roninBlue} {...iconProps}/>}
 		</TouchableOpacity>
 		{caption && <Text numberOfLine={1} style={styles.caption}>

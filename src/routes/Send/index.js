@@ -6,6 +6,7 @@ import type { Style, } from 'typeDefinitions';
 import TopNavigation from 'components/TopNavigation';
 import Input from 'components/Input';
 import Button from 'components/Button';
+import RouteContainer from 'components/RouteContainer';
 import { colors, textColors, sizes, } from 'utils/global';
 
 type Props = {
@@ -19,7 +20,7 @@ const SendRoute = (props: Props) => {
 		<Text style={styles.embedButtonCaption}>MAX</Text>
 	</TouchableOpacity>;
 
-	return <View style={styles.container}>
+	return <RouteContainer style={styles.container}>
 		<TopNavigation
 			title="Send Assets"
 			onBack={() => navigate('/')}/>
@@ -45,7 +46,7 @@ const SendRoute = (props: Props) => {
 				style={styles.buttonContainer}
 				caption="Send"/>
 		</View>
-	</View>;
+	</RouteContainer>;
 };
 
 export default SendRoute;
