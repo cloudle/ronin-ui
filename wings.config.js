@@ -1,3 +1,6 @@
+const { resolve, } = require('path');
+const CopyPlugin = require('copy-webpack-plugin');
+
 const splitBundle = (configs, globalModules) => {
 	configs.entry = {
 		app: {
@@ -18,10 +21,18 @@ const splitBundle = (configs, globalModules) => {
 	return configs;
 };
 
+const copyAssets = (configs) => {
+	configs.plugins.push(new CopyPlugin({
+		patterns: [{ from: resolve(process.cwd(), 'assets/'), to: './', }, ],
+	}));
+
+	return configs;
+};
 
 module.exports = {
 	webpackConfigs: [
 		splitBundle,
+		copyAssets,
 	],
 	moduleAlias: (isProduction) => {
 		return {
