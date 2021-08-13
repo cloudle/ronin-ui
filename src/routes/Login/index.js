@@ -1,6 +1,6 @@
 import React, { useState, } from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, } from 'react-native';
-import { useNavigate, } from 'react-router';
+import { useDispatch, } from 'react-redux';
 
 import LogoIcon from 'svg/logo';
 import EyeIcon from 'svg/eye';
@@ -9,6 +9,7 @@ import Input from 'components/Input';
 import Button from 'components/Button';
 import RouteContainer from 'components/RouteContainer';
 import { colors, textColors, } from 'utils/global';
+import * as appActions from 'store/action/app';
 
 type Props = {
 
@@ -16,7 +17,7 @@ type Props = {
 
 const LoginRoute = (props: Props) => {
 	const [secure, setSecure] = useState(true);
-	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	const showPasswordButton = <TouchableOpacity
 		style={styles.showPasswordButton}
@@ -45,7 +46,7 @@ const LoginRoute = (props: Props) => {
 				caption="Unlock"
 				style={styles.unlockButton}
 				contentContainerStyle={styles.unlockButtonInner}
-				onPress={() => navigate('/')}/>
+				onPress={() => dispatch(appActions.signIn('7300 3777 3888 3334', ''))}/>
 		</View>
 	</RouteContainer>;
 };

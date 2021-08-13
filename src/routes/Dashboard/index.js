@@ -1,11 +1,12 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView, Text, } from 'react-native';
-import { useNavigate } from 'react-router';
+import { useDispatch, } from 'react-redux';
 
 import DiamondIcon from 'svg/diamond';
 import IconButton from 'components/IconButton';
 import RouteContainer from 'components/RouteContainer';
 import { colors, textColors, sizes, } from 'utils/global';
+import * as appActions from 'store/action/app';
 import Wallet from './Wallet';
 import AssetRow from './AssetRow';
 
@@ -14,7 +15,7 @@ type Props = {
 };
 
 const DashboardRoute = (props: Props) => {
-	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	return <RouteContainer style={styles.container}>
 		{particles.map((configs, i) => <DiamondIcon key={i} {...configs}/>)}
@@ -25,7 +26,9 @@ const DashboardRoute = (props: Props) => {
 					<Text style={styles.appNameTitle}>Ronin Wallet</Text>
 				</View>
 				<View style={styles.headingCommandContainer}>
-					<IconButton icon="user"/>
+					<IconButton
+						icon="user"
+						onPress={() => dispatch(appActions.signOut())}/>
 				</View>
 			</View>
 			<ScrollView contentContainerStyle={styles.scrollContentContainer}>
