@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView, Text, } from 'react-native';
-import { useDispatch, } from 'react-redux';
+import { useDispatch, useSelector, } from 'react-redux';
+import { useNavigate, } from 'react-router';
 
 import DiamondIcon from 'svg/diamond';
 import IconButton from 'components/IconButton';
@@ -16,6 +17,10 @@ type Props = {
 
 const DashboardRoute = (props: Props) => {
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
+	const profile = useSelector(({ app }) => app.profile);
+	const wallet = useSelector(({ wallet }) => wallet);
+	const exchange = useSelector(({ exchange }) => exchange);
 
 	return <RouteContainer style={styles.container}>
 		{particles.map((configs, i) => <DiamondIcon key={i} {...configs}/>)}
@@ -32,7 +37,10 @@ const DashboardRoute = (props: Props) => {
 				</View>
 			</View>
 			<ScrollView contentContainerStyle={styles.scrollContentContainer}>
-				<Wallet/>
+				<Wallet
+					balance={wallet.balance}
+					profile={profile}
+					exchange={exchange}/>
 				<View style={styles.commandContainer}>
 					<IconButton
 						disabled
@@ -57,9 +65,10 @@ const DashboardRoute = (props: Props) => {
 					Assets
 				</Text>
 				<View style={styles.assetsContainer}>
-					{mockAssets.map((item, i) => <AssetRow
+					{wallet.assets.map((item, i) => <AssetRow
 						key={i}
-						item={item}/>)}
+						item={item}
+						exchange={exchange}/>)}
 				</View>
 			</ScrollView>
 		</View>
@@ -164,21 +173,4 @@ const particles = [{
 	size: 12,
 	color: '#EC9FFF',
 	style: { position: 'absolute', top: 345, right: 60, },
-}, ];
-
-const mockAssets = [{
-	currency: 'EUR',
-	value: 50,
-}, {
-	currency: 'YEN',
-	value: 10000,
-}, {
-	currency: 'YEN',
-	value: 9000,
-}, {
-	currency: 'YEN',
-	value: 8000,
-}, {
-	currency: 'YEN',
-	value: 1000,
 }, ];

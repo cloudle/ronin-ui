@@ -1,16 +1,19 @@
 import React from 'react';
 import { StyleSheet, View, Image, Text, } from 'react-native';
+import numeral from 'numeral';
 
-import type { IAsset, } from 'typeDefinitions';
+import type { IAsset, IExchange, } from 'typeDefinitions';
 import { colors, textColors, sizes, } from 'utils/global';
 
 type Props = {
 	item?: IAsset,
+	exchange?: IExchange,
 };
 
 const AssetRow = (props: Props) => {
-	const { item, } = props;
-	const currencyIconSrc = { uri: './yen-coin.png', };
+	const { item, exchange, } = props;
+	const localValue = item.value * exchange.rates[item.currency];
+	const currencyIconSrc = { uri: currencyIconMap[item.currency], };
 
 	return <View style={styles.container}>
 		<Image
@@ -18,10 +21,10 @@ const AssetRow = (props: Props) => {
 			source={currencyIconSrc}/>
 		<View style={styles.innerContainer}>
 			<Text style={styles.primaryValue}>
-				{item.value} {item.currency}
+				{numeral(item.value).format('0,0')} {item.currency}
 			</Text>
 			<Text style={styles.localValue}>
-				{item.value}
+				{numeral(localValue).format('0,0')} {exchange.baseCurrency}
 			</Text>
 		</View>
 	</View>;
@@ -59,3 +62,8 @@ const styles = StyleSheet.create({
 		marginTop: 4,
 	},
 });
+
+const currencyIconMap = {
+	EUR: './eur-coin.png',
+	YEN: './yen-coin.png',
+};

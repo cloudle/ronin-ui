@@ -1,16 +1,24 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
+import numeral from 'numeral';
 
+import type { IUserProfile, IExchange, } from 'typeDefinitions';
 import CopyIcon from 'svg/copy';
 import LogoIcon from 'svg/logo';
 import { colors, } from 'utils/global';
 
 type Props = {
-
+	profile?: IUserProfile,
+	balance?: number,
+	exchange?: IExchange,
 };
 
 const Wallet = (props: Props) => {
+	const { profile, balance, exchange, } = props;
+	const usdBalance = balance || 0;
+	const localBalance = usdBalance * exchange.rates.USD;
+
 	return <LinearGradient
 		style={styles.container}
 		colors={['#1273EA', '#1C94F4']}
@@ -20,7 +28,7 @@ const Wallet = (props: Props) => {
 			<Text numberOfLines={1} style={styles.walletTitle}>
 				<Text>My Wallet</Text>
 				<Text style={styles.walletId}>
-					(7300 3777 3888 3334)
+					({profile?.id})
 				</Text>
 			</Text>
 			<TouchableOpacity>
@@ -30,10 +38,10 @@ const Wallet = (props: Props) => {
 		<View style={styles.footerContainer}>
 			<View style={styles.balanceContainer}>
 				<Text style={styles.primaryBalance}>
-					1,000 USD
+					{numeral(usdBalance).format('0,0')} USD
 				</Text>
 				<Text style={styles.localBalance}>
-					23,046,000 VND
+					{numeral(localBalance).format('0,0')} {exchange.baseCurrency}
 				</Text>
 			</View>
 			<View style={styles.brandContainer}>

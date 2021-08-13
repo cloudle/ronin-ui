@@ -27,3 +27,20 @@ export type IAsset = {
 	currency: ICurrency,
 	value?: number,
 };
+
+export type IUserProfile = {
+	id: string,
+	balance?: number,
+};
+
+export type IExchangeRates = {
+	VND: number,
+	USD: number,
+	EUR: number,
+	YEN: number,
+};
+
+export type IExchange = {
+	baseCurrency: ICurrency,
+	rates: IExchangeRates,
+};
