@@ -1,3 +1,6 @@
+## Introduction:
+A Browser based Application.. but also "mobile friendly", could be run natively with React Native. 
+
 ## Required tools:
 - wings-cli, install with `npm i -g wings-cli`
 
