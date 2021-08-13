@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
 	},
 	commandContainer: {
 		flexDirection: 'row',
-		marginTop: 18,
+		marginTop: 30,
 		justifyContent: 'center',
 	},
 	button: {

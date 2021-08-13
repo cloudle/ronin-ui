@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 	},
 	scrollContentContainer: {
-		paddingVertical: 18,
+		paddingVertical: 30,
 		paddingHorizontal: 20,
 	},
 	commandContainer: {

@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
 		height: sizes.navigationHeight,
 		justifyContent: 'center',
 		shadowColor: '#000000',
-		shadowOpacity: 0.05,
+		shadowOpacity: 0.04,
 		shadowRadius: 12,
 		shadowOffset: { width: 0, height: 3, },
 	},
