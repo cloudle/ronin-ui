@@ -10,4 +10,5 @@ export const textColors = {
 
 export const sizes = {
 	normalRadius: 8,
+	navigationHeight: 56,
 };
