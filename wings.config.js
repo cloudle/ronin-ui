@@ -39,6 +39,9 @@ module.exports = {
 			global: {
 				'react-native': 'react-native-web',
 			},
+			web: {
+				'react-native-linear-gradient': 'react-native-web-linear-gradient',
+			},
 		};
 	},
 };

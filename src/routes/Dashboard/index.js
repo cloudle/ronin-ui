@@ -1,10 +1,9 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView, TouchableOpacity, Text, } from 'react-native';
 
-import UserIcon from 'svg/user';
-import Wallet from 'components/Wallet';
 import IconButton from 'components/IconButton';
 import { colors, textColors, sizes, } from 'utils/global';
+import Wallet from './Wallet';
 import AssetRow from './AssetRow';
 
 type Props = {

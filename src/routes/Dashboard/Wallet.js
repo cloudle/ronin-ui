@@ -1,5 +1,6 @@
 import React from 'react';
 import { StyleSheet, View, Text, TouchableOpacity, } from 'react-native';
+import LinearGradient from 'react-native-linear-gradient';
 
 import CopyIcon from 'svg/copy';
 import LogoIcon from 'svg/logo';
@@ -10,7 +11,11 @@ type Props = {
 };
 
 const Wallet = (props: Props) => {
-	return <View style={styles.container}>
+	return <LinearGradient
+		style={styles.container}
+		colors={['#1273EA', '#1C94F4']}
+		start={{ x: 0, y: 0.5, }}
+		end={{ x: 1, y: 0.5, }}>
 		<View style={styles.headerContainer}>
 			<Text numberOfLines={1} style={styles.walletTitle}>
 				<Text>My Wallet</Text>
@@ -39,7 +44,7 @@ const Wallet = (props: Props) => {
 					height={40}/>
 			</View>
 		</View>
-	</View>;
+	</LinearGradient>;
 };
 
 export default Wallet;
@@ -59,7 +64,7 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		borderBottomWidth: StyleSheet.hairlineWidth,
 		borderColor: 'rgba(255, 255, 255, 0.2)',
-		paddingBottom: 12,
+		paddingBottom: 20,
 	},
 	walletTitle: {
 		flex: 1,
@@ -75,7 +80,7 @@ const styles = StyleSheet.create({
 	},
 	footerContainer: {
 		flexDirection: 'row',
-		paddingTop: 12,
+		paddingTop: 14,
 	},
 	balanceContainer: {
 		flex: 1,
