@@ -12,6 +12,7 @@
 	"dependencies": {
 		"@react-native-community/async-storage": "^1.12.1",
 		"history": "^5.0.0",
+		"numeral": "^2.0.6",
 		"react": "^17.0.1",
 		"react-art": "^17.0.1",
 		"react-dom": "^17.0.1",
