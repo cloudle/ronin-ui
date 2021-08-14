@@ -5,12 +5,14 @@ import { Style, Element, } from 'typeDefinitions';
 import UserIcon from 'svg/user';
 import CopyIcon from 'svg/copy';
 import SendIcon from 'svg/send';
+import CardIcon from 'svg/card';
+import ReplayIcon from 'svg/replay';
 import { colors, textColors, sizes, } from 'utils/global';
 
 type Props = {
 	style?: Style,
 	buttonContainerStyle?: Style,
-	icon?: 'user' | 'copy' | 'send',
+	icon?: 'user' | 'copy' | 'send' | 'card',
 	size?: number,
 	iconSize?: number,
 	caption?: string,
@@ -74,4 +76,6 @@ const iconMap = {
 	user: UserIcon,
 	copy: CopyIcon,
 	send: SendIcon,
+	card: CardIcon,
+	replay: ReplayIcon,
 };

@@ -47,7 +47,7 @@ const DashboardRoute = (props: Props) => {
 						disabled
 						style={styles.button}
 						buttonContainerStyle={styles.buttonInner}
-						icon="send"
+						icon="card"
 						caption="Deposit"/>
 					<IconButton
 						style={styles.button}
@@ -59,7 +59,7 @@ const DashboardRoute = (props: Props) => {
 						disabled
 						style={styles.button}
 						buttonContainerStyle={styles.buttonInner}
-						icon="send"
+						icon="replay"
 						caption="Swap"/>
 				</View>
 				<Text style={styles.sectionTitle}>
