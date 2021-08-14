@@ -1,7 +1,7 @@
 import { useEffect, } from 'react';
 import { useSelector, } from 'react-redux';
 import { useSafeAreaInsets, } from 'react-native-safe-area-context';
-import { router, } from '../global';
+import { router, denormalize, } from '../global';
 
 export const useInsets = useSafeAreaInsets;
 export const useUserProfile = (required = false) => {
@@ -15,4 +15,10 @@ export const useUserProfile = (required = false) => {
 	}, [profileReady]);
 
 	return userProfile;
+};
+
+export const useDenormalized = (selector, normalizedFields) => {
+	const source = useSelector(selector);
+
+	return denormalize(source.toJS(), normalizedFields);
 };

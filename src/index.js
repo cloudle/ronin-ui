@@ -3,6 +3,7 @@ import { Provider, useDispatch, } from 'react-redux';
 import { SafeAreaProvider, } from 'react-native-safe-area-context';
 import { useNavigate, } from 'react-router';
 
+import Floats from 'components/Floats';
 import Dashboard from 'routes/Dashboard';
 import Login from 'routes/Login';
 import Send from 'routes/Send';
@@ -35,6 +36,7 @@ const App = (props: Props) => {
 
 	return <Fragment>
 		{routedElement}
+		<Floats/>
 	</Fragment>;
 };
 

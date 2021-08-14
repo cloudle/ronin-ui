@@ -1,11 +1,17 @@
-export * from './constant';
+import { isEqual, } from 'lodash';
 
-const routerInstance = {
+export * from './constant';
+export * from './normalize';
+export * from './ui';
+
+export const router = {
 	navigate: () => {},
 };
 
 export const setNavigate = (val) => {
-	routerInstance.navigate = val;
+	router.navigate = val;
 };
 
-export const router = routerInstance;
+export const listItemEqual = (props, nextProps) => {
+	return isEqual(props.item, nextProps.item);
+}

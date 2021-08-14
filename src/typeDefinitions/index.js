@@ -44,3 +44,12 @@ export type IExchange = {
 	baseCurrency: ICurrency,
 	rates: IExchangeRates,
 };
+
+export type ToggleModalOptions = {
+	id: String,
+	type: 'MODAL' | 'DROPDOWN',
+	component: Element,
+	containerLayout?: Layout,
+	onReady?: Function,
+	onClose?: Function,
+};
