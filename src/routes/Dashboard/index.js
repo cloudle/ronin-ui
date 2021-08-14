@@ -6,11 +6,11 @@ import { useNavigate, } from 'react-router';
 import DiamondIcon from 'svg/diamond';
 import IconButton from 'components/IconButton';
 import RouteContainer from 'components/RouteContainer';
+import AssetRow from 'components/AssetRow';
 import { colors, textColors, sizes, } from 'utils/global';
 import { useUserProfile, } from 'utils/effect';
 import * as appActions from 'store/action/app';
 import Wallet from './Wallet';
-import AssetRow from './AssetRow';
 
 type Props = {
 
@@ -68,6 +68,7 @@ const DashboardRoute = (props: Props) => {
 				<View style={styles.assetsContainer}>
 					{wallet.assets.map((item, i) => <AssetRow
 						key={i}
+						style={styles.assetRowContainer}
 						item={item}
 						exchange={exchange}/>)}
 				</View>
@@ -147,6 +148,11 @@ const styles = StyleSheet.create({
 	},
 	assetsContainer: {
 
+	},
+	assetRowContainer: {
+		backgroundColor: colors.cloud,
+		borderRadius: sizes.normalRadius,
+		marginBottom: 10,
 	},
 });
 

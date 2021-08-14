@@ -3,7 +3,7 @@ import { StyleSheet, View, TouchableOpacity, Image, Text, } from 'react-native';
 import numeral from 'numeral';
 
 import type { Style, IAsset, IExchange, } from 'typeDefinitions';
-import { colors, textColors, sizes, } from 'utils/global';
+import { textColors, } from 'utils/global';
 
 type Props = {
 	style?: Style,
@@ -14,13 +14,17 @@ type Props = {
 };
 
 const AssetRow = (props: Props) => {
-	const { item, exchange, onSelect, } = props;
+	const { style, item, exchange, onSelect, } = props;
 	const localValue = item.value * exchange.rates[item.currency];
 	const currencyIconSrc = { uri: currencyIconMap[item.currency], };
+	const ContainerComponent = onSelect ? TouchableOpacity : View;
+	const conditionalProps = onSelect ? {
+		onPress: () => onSelect?.(item),
+	} : {};
 
-	return <TouchableOpacity
-		style={styles.container}
-		onPress={() => onSelect?.(item)}>
+	return <ContainerComponent
+		style={[styles.container, style]}
+		{...conditionalProps}>
 		<Image
 			style={styles.currencyIcon}
 			source={currencyIconSrc}/>
@@ -32,7 +36,7 @@ const AssetRow = (props: Props) => {
 				{numeral(localValue).format('0,0')} {exchange.baseCurrency}
 			</Text>
 		</View>
-	</TouchableOpacity>;
+	</ContainerComponent>;
 };
 
 export default AssetRow;
@@ -42,9 +46,6 @@ const currencyIconSize = 32;
 const styles = StyleSheet.create({
 	container: {
 		flexDirection: 'row',
-		// backgroundColor: colors.cloud,
-		// borderRadius: sizes.normalRadius,
-		// marginBottom: 10,
 		paddingVertical: 16,
 		paddingHorizontal: 20,
 	},
