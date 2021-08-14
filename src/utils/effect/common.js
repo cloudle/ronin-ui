@@ -1,4 +1,4 @@
-import { useEffect, } from 'react';
+import { useEffect, useState, } from 'react';
 import { useSelector, } from 'react-redux';
 import { useSafeAreaInsets, } from 'react-native-safe-area-context';
 import { router, denormalize, } from '../global';
@@ -21,4 +21,14 @@ export const useDenormalized = (selector, normalizedFields) => {
 	const source = useSelector(selector);
 
 	return denormalize(source.toJS(), normalizedFields);
+};
+
+export const useInput = (initialValue) => {
+	const [value, setValue] = useState(initialValue);
+
+	return {
+		value,
+		setValue,
+		onChangeText: value => setValue(value),
+	};
 };
