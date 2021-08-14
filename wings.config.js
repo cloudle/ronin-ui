@@ -38,6 +38,7 @@ const setEnvironments = (configs, { webpack, wingsConfig, }) => {
 		process: { env: {} },
 		__DEV__: !isProduction,
 		ENV: JSON.stringify(env),
+		API_ENDPOINT: JSON.stringify('https://lq92alow55.execute-api.us-east-1.amazonaws.com/dev/graphql'),
 	});
 
 	return configs;

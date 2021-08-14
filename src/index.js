@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, } from 'react';
 import { Provider, useDispatch, } from 'react-redux';
 import { SafeAreaProvider, } from 'react-native-safe-area-context';
+import { ApolloProvider, } from '@apollo/client/react';
 import { useNavigate, } from 'react-router';
 
 import Floats from 'components/Floats';
@@ -10,6 +11,7 @@ import Send from 'routes/Send';
 import { Router, } from 'utils/router';
 import { useRoutes, } from 'utils/effect';
 import { setNavigate, } from 'utils/global';
+import { graphQlClient, } from 'utils/graphql';
 import { store, } from 'store';
 import * as appActions from 'store/action/app';
 
@@ -41,13 +43,15 @@ const App = (props: Props) => {
 };
 
 const AppContainer = () => {
-	return <Provider store={store}>
-		<SafeAreaProvider>
-			<Router>
-				<App/>
-			</Router>
-		</SafeAreaProvider>
-	</Provider>;
+	return <ApolloProvider client={graphQlClient}>
+		<Provider store={store}>
+			<SafeAreaProvider>
+				<Router>
+					<App/>
+				</Router>
+			</SafeAreaProvider>
+		</Provider>
+	</ApolloProvider>;
 };
 
 export default AppContainer;
