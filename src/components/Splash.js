@@ -21,6 +21,9 @@ const Splash = (props: Props) => {
 			</Text>
 		</View>
 		<View style={styles.loadingContainer}>
+			<Text style={styles.subTitle}>
+				Your Digital Passport
+			</Text>
 			<ActivityIndicator color={colors.roninBlue}/>
 		</View>
 	</RouteContainer>;
@@ -45,10 +48,18 @@ const styles = StyleSheet.create({
 		marginTop: 24,
 		color: textColors.gray,
 	},
+	subTitle: {
+		fontSize: 14,
+		lineHeight: 20,
+		fontWeight: '400',
+		textAlign: 'center',
+		marginTop: 8,
+		marginBottom: 32,
+		color: textColors.gray,
+	},
 	loadingContainer: {
 		flex: 1,
 		alignItems: 'center',
-		paddingTop: 32,
 	},
 });
 
