@@ -7,6 +7,7 @@ import DiamondIcon from 'svg/diamond';
 import IconButton from 'components/IconButton';
 import RouteContainer from 'components/RouteContainer';
 import AssetRow from 'components/AssetRow';
+import Splash from 'components/Splash';
 import { colors, textColors, sizes, } from 'utils/global';
 import { useUserProfile, } from 'utils/effect';
 import * as appActions from 'store/action/app';
@@ -19,9 +20,12 @@ type Props = {
 const DashboardRoute = (props: Props) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const profileReady = useSelector(({ app }) => app.profileReady);
 	const profile = useUserProfile(true);
 	const wallet = useSelector(({ wallet }) => wallet);
 	const exchange = useSelector(({ exchange }) => exchange);
+
+	if (!profileReady) return <Splash/>;
 
 	return <RouteContainer style={styles.container}>
 		{particles.map((configs, i) => <DiamondIcon key={i} {...configs}/>)}
@@ -84,6 +88,11 @@ const dotSize = 8;
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
+	},
+	loadingContainer: {
+		flex: 1,
+		alignItems: 'center',
+		justifyContent: 'center',
 	},
 	contentContainer: {
 		position: 'absolute',
