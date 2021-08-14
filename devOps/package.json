@@ -1,0 +1,10 @@
+{
+	"name": "ronin-devops",
+	"scripts": {
+		"i": "terraform init",
+		"plan": "terraform plan -state=./states/dev.tfstate",
+		"apply": "terraform apply -state=./states/dev.tfstate",
+		"destroy": "terraform destroy -state=./states/dev.tfstate"
+	},
+	"license": "MIT"
+}
