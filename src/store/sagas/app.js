@@ -3,6 +3,8 @@ import { all, takeEvery, put, call, } from 'redux-saga/effects';
 import * as appActions from 'store/action/app';
 import * as Actions from 'store/actions';
 import { router, } from 'utils/global';
+import { graphQlClient, } from 'utils/graphql';
+import * as queries from 'utils/graphql/query';
 
 function* signInSaga({ payload, }) {
 	try {
@@ -29,9 +31,11 @@ function* signOutSaga({ payload, }) {
 
 function* getProfileSaga({ payload, }) {
 	try {
-		const userId = yield call(AsyncStorage.getItem, 'userId');
+		const { data: userResponse, } = yield call(graphQlClient.query, {
+			query: queries.User,
+		});
 
-		yield put(appActions.syncProfile({ id: userId, }));
+		yield put(appActions.syncProfile(userResponse.user));
 	} catch (err) {
 		console.log(err);
 	}
