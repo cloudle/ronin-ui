@@ -7,15 +7,6 @@ const mockAssets: Array<ICurrency> = [{
 }, {
 	currency: 'YEN',
 	value: 10000,
-}, {
-	currency: 'YEN',
-	value: 9000,
-}, {
-	currency: 'YEN',
-	value: 8000,
-}, {
-	currency: 'YEN',
-	value: 1000,
 }, ];
 
 const initialState = {

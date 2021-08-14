@@ -12,3 +12,9 @@ export const sizes = {
 	normalRadius: 8,
 	navigationHeight: 56,
 };
+
+export const currencyIconMap = {
+	USD: './usd-coin.png',
+	EUR: './eur-coin.png',
+	YEN: './yen-coin.png',
+};

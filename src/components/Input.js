@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, } from 'react-native';
+import { StyleSheet, View, TouchableOpacity, Text, TextInput, } from 'react-native';
 
 import type { Style, } from 'typeDefinitions';
 import { textColors, sizes, } from 'utils/global';
@@ -25,11 +25,14 @@ const Input = (props: Props) => {
 		caption,
 		rightCaption,
 		disabled,
+		onPress,
 		prefix,
 		suffix,
 		...inputProps
 	} = props;
 	const showCaption = !!caption || !!rightCaption;
+	const InputContainerElement = onPress ? TouchableOpacity : View;
+	const conditionalProps = onPress ? { onPress, activeOpacity: 0.5, } : {};
 
 	return <View style={[styles.container, style,]}>
 		{showCaption && <View style={styles.captionContainer}>
@@ -40,11 +43,13 @@ const Input = (props: Props) => {
 				{rightCaption}
 			</Text>
 		</View>}
-		<View style={[styles.inputContainer, disabled && styles.disabledContainer, ]}>
+		<InputContainerElement
+			style={[styles.inputContainer, disabled && styles.disabledContainer, ]}
+			{...conditionalProps}>
 			{prefix}
 			<TextInput style={[styles.input, disabled && styles.disabledInput, inputStyle]} {...inputProps}/>
 			{suffix}
-		</View>
+		</InputContainerElement>
 	</View>;
 };
 
