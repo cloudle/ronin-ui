@@ -64,6 +64,7 @@ const styles = StyleSheet.create({
 });
 
 const currencyIconMap = {
+	USD: './usd-coin.png',
 	EUR: './eur-coin.png',
 	YEN: './yen-coin.png',
 };
