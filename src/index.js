@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, } from 'react';
-import { Provider, } from 'react-redux';
+import { Provider, useDispatch, } from 'react-redux';
 import { SafeAreaProvider, } from 'react-native-safe-area-context';
 import { useNavigate, } from 'react-router';
 
@@ -10,6 +10,7 @@ import { Router, } from 'utils/router';
 import { useRoutes, } from 'utils/effect';
 import { setNavigate, } from 'utils/global';
 import { store, } from 'store';
+import * as appActions from 'store/action/app';
 
 type Props = {
 
@@ -17,9 +18,11 @@ type Props = {
 
 const App = (props: Props) => {
 	const navigate = useNavigate();
+	const dispatch = useDispatch();
 
 	useEffect(() => {
 		setNavigate(navigate);
+		dispatch(appActions.getProfile());
 	}, []);
 
 	const routedElement = useRoutes([{

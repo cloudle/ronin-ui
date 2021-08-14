@@ -7,6 +7,7 @@ import DiamondIcon from 'svg/diamond';
 import IconButton from 'components/IconButton';
 import RouteContainer from 'components/RouteContainer';
 import { colors, textColors, sizes, } from 'utils/global';
+import { useUserProfile, } from 'utils/effect';
 import * as appActions from 'store/action/app';
 import Wallet from './Wallet';
 import AssetRow from './AssetRow';
@@ -18,7 +19,7 @@ type Props = {
 const DashboardRoute = (props: Props) => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const profile = useSelector(({ app }) => app.profile);
+	const profile = useUserProfile(true);
 	const wallet = useSelector(({ wallet }) => wallet);
 	const exchange = useSelector(({ exchange }) => exchange);
 
