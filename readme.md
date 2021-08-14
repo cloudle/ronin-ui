@@ -17,3 +17,7 @@ This project use Terraform to deploy over AWS S3 and CloudFront.
 - Make sure you have Terraform initialized on your machine by execute `terraform init` inside `devOps` folder
 - Under project's root, run `yarn deploy` to deploy
 - Note: Terraform states could be found under `devOps/states` folder, link it with ie. DropBox for simple state share
+
+## Api:
+- Api for this project powered by GraphQl, which come with nice Playground tool under [this link](https://lq92alow55.execute-api.us-east-1.amazonaws.com/dev/graphql).
+- This also act as the Api documentation/interface for the UI side. 
