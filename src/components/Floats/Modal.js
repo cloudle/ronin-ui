@@ -1,6 +1,6 @@
 import React, { Fragment, useEffect, useState, } from 'react';
 import { StyleSheet, TouchableOpacity, } from 'react-native';
-import Animated, { useAnimatedStyle, useSharedValue, withSpring, } from 'react-native-reanimated';
+import Animated, { Extrapolate, useAnimatedStyle, useSharedValue, withSpring, interpolate, } from 'react-native-reanimated';
 
 import type { ToggleModalOptions, } from 'typeDefinitions';
 import { listItemEqual, } from 'utils/global';
@@ -18,6 +18,12 @@ const FloatModal = (props: Props) => {
 	const [ready, setReady] = useState(true);
 	const opacity = useSharedValue(0);
 	const maskStyle = useAnimatedStyle(() => ({ opacity: opacity.value, }));
+	const contentStyle = useAnimatedStyle(() => {
+		const innerOp = interpolate(opacity.value, [0, 0.5], [0, 1], Extrapolate.CLAMP);
+		const translateY = interpolate(opacity.value, [0, 0.5], [10, 0], Extrapolate.CLAMP);
+
+		return { opacity: innerOp, transform: [{ translateY, }] };
+	});
 
 	const onClose = () => {
 		setReady(false);
@@ -28,7 +34,7 @@ const FloatModal = (props: Props) => {
 	};
 
 	useEffect(() => {
-		opacity.value = withSpring(0.2, {
+		opacity.value = withSpring(0.5, {
 
 		}, (isFinished) => {
 			item?.onReady?.(isFinished);
@@ -40,7 +46,11 @@ const FloatModal = (props: Props) => {
 			pointerEvents={ready ? 'auto' : 'none'}
 			onPress={onClose}
 			style={[styles.maskContainer, maskStyle]}/>
-		<Component close={onClose} configs={item}/>
+		<Animated.View
+			pointerEvents="box-none"
+			style={[styles.contentContainer, contentStyle]}>
+			<Component close={onClose} configs={item}/>
+		</Animated.View>
 	</Fragment>;
 };
 
@@ -54,5 +64,9 @@ const styles = StyleSheet.create({
 		position: 'absolute',
 		top: 0, left: 0, right: 0, bottom: 0,
 		backgroundColor: '#000000',
+	},
+	contentContainer: {
+		position: 'absolute',
+		top: 0, left: 0, right: 0, bottom: 0,
 	},
 });
